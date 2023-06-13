@@ -239,7 +239,7 @@ section#hero {
     flex-direction: column;
     align-items: flex-start;
     margin: 32px 0;
-    max-width: 450px;
+    max-width: 525px;
 }
 #hero-image-container {
     /* valor defecto 500px x 500px*/
@@ -250,6 +250,7 @@ section#hero {
 }
 .hero-title {
     line-height: 100px;
+    max-width: 450px;
 }
 .hero-subtitle {
     margin: 5px 0;
@@ -301,7 +302,14 @@ section#about {
     margin: 5px 5px;
 }
 .tool-img {
-    width: 64px;
+    height: 60px;
+    filter: grayscale(100%);
+    transition: all 3s;
+}
+.tool-img:hover {
+    transform: scale(1.15);
+    filter: grayscale(0);
+    transition: all 0.5s;
 }
 .icon{
     vertical-align: middle;
@@ -372,6 +380,18 @@ section#projects {
 }
 #orders-card {
     background-image: url("../assets/img/cards/orders-card.png");
+    background-size: cover;
+}
+#mineria-card {
+    background-image: url("../assets/img/cards/mineria-card.png");
+    background-size: cover;
+}
+#sorting-card {
+    background-image: url("../assets/img/cards/sorting-card.png");
+    background-size: cover;
+}
+#truth-table-card {
+    background-image: url("../assets/img/cards/truth-table-card.png");
     background-size: cover;
 }
 
