@@ -1,61 +1,234 @@
-// Funcionalidad de Copiado a portapales:
-var emailButton = document.getElementById("email-button");
-emailButton.addEventListener("click", () => {
- navigator?.clipboard?.writeText("missaelvarelayocupicio@gmail.com");
- showNotification();
+import projects from "./projectData.js"
+
+// Agregando las Card projects
+const cardWrapper = document.getElementById("card-wrapper");
+
+projects.forEach((project) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.classList.add("swiper-slide");
+  card.classList.add("open-modal");
+  card.setAttribute("id", project.id);
+
+  const cardContent = document.createElement("div");
+  cardContent.classList.add("card-content");
+
+  card.appendChild(cardContent);
+  cardWrapper.appendChild(card);
 });
 
-// Comportamiento de las notificaciones toast:
+// Funcionalidad de botones
+var emailButton = document.getElementById("email-button");
+emailButton.addEventListener("click", () => {
+  // Copiando texto a portapapeles
+  navigator?.clipboard?.writeText("missaelvarelayocupicio@gmail.com");
+  // Lanzando notificación
+  showNotification({ type: notificationTypes.Success, text: "Copied to clipboard"});
+});
+
+//#region PROJECT MODAL
+const modal = document.querySelector("#modal");
+const modalTitle = document.querySelector("#modal-title");
+const modalSubtitle = document.querySelector("#modal-subtitle");
+const modalDescription = document.querySelector("#modal-description");
+const modalExtra = document.querySelector("#modal-extra");
+const modalImagesContainer = document.querySelector("#modal-images-container");
+const modalButtonsContainer = document.querySelector("#modal-buttons-container");
+
+const openElements = document.querySelectorAll(".open-modal");
+const closeElements = document.querySelectorAll(".close-modal");
+
+function showModal() {
+  modal.classList.add("modal-shown");
+}
+function closeModal() {
+  modal.classList.remove("modal-shown");
+}
+function updateModal({title, subtitle, description, extra, images = [], buttons = []}) {
+  modalTitle.textContent = title;
+  modalSubtitle.textContent = subtitle;
+  modalDescription.textContent = description;
+  modalExtra.textContent = extra;
+  modalImagesContainer.innerHTML = "";
+  images.forEach(image => {
+    const element = createImageElement(image);
+    modalImagesContainer.appendChild(element);
+  })
+  modalButtonsContainer.innerHTML = "";
+  buttons.forEach(button => {
+    const element = createButtonElement(button);
+    modalButtonsContainer.appendChild(element);
+  })
+}
+function createImageElement(imageName) {
+  // Crear elemento
+  const path = "./assets/img/projects/";
+  const element = document.createElement("div");
+  element.className = "swiper-slide";
+  element.innerHTML = `
+    <div class="swiper-zoom-container modal-image-container">
+      <img src=${path + imageName} class="modal-image">
+    </div>
+  `;
+  // Retornar elemento
+  return element;
+}
+function createButtonElement({ type, href }) {
+  // Elegir variables
+  const path = "./assets/svg/";
+  switch(type) {
+    case "Code": 
+      var icon = "github.svg";
+      var text = "Code";
+      break;
+    case "Deployment":
+      var icon = "deployment.svg";
+      var text = "Deployment";
+      break;
+    case "Design":
+      var icon = "design.svg";
+      var text = "Design";
+      break;
+    case "Documentation":
+      var icon = "document.svg";
+      var text = "Documentation";
+      break;
+    default:
+      var icon = "";
+      var text = ""
+  }
+
+  // Crear elemento
+  const element = document.createElement("a");
+  element.className = "icon-text-button";
+  element.setAttribute("href", href);
+  element.setAttribute("target", "_blank");
+  element.innerHTML = `
+    <img src="${path + icon}" class="small-icon-svg">
+    <p>${text}</p>
+  `;
+
+  // Retornar elemento
+  return element;
+}
+function getProjectData(id) {
+  return projects.find(project => project.id === id)
+}
+
+// Agregando el evento mostrar modal
+openElements.forEach((element) => {
+  element.addEventListener("click", () => {
+    // Detectar target
+    const data = getProjectData(element.id);
+
+    // Actualizar info del modal
+    updateModal(data);
+
+    // Mostrar modal
+    showModal();
+  })
+})
+// Agregando el evento cerrar modal
+closeElements.forEach((element) => {
+  element.addEventListener("click", () => {
+    closeModal();
+  })
+})
+//#endregion
+
+//#region TOAST NOTIFICATION
 let currentNotification;
-async function showNotification(){
+const notificationTypes = {
+  Success: Symbol(0),
+  Info: Symbol(1),
+  Warning: Symbol(2),
+  Error: Symbol(3),
+}
+async function showNotification({ type, text = "", time = 2000 }){
   if (currentNotification) {
     currentNotification.remove();
   } 
+
+  switch(type) {
+    case notificationTypes.Success:
+      var iconSrc = "./assets/svg/correct.svg";
+      break;
+    case notificationTypes.Info:
+      throw Error("Info notification sin implementar.");
+    case notificationTypes.Warning:
+      throw Error("Warning notification sin implementar.");
+    case notificationTypes.Error:
+      throw Error("Error notification sin implementar.");
+    default:
+      var iconSrc = null;
+  }
+
   var container = document.getElementById("toast-container");
   var notification = document.createElement("div");
   notification.className = "toast-notification slide-in";
   notification.innerHTML = `
-    <img src="./assets/svg/correct.svg" alt="" class="small-icon-svg">
-    <p class="toast-notification-text">Copied to clipboard</p>
+    <img src="${iconSrc}" alt="" class="small-icon-svg">
+    <p class="toast-notification-text">${text}</p>
   `;
   container.appendChild(notification);
   currentNotification = notification;
+
   setTimeout(() => {
     notification.classList.add("fade-out");
     setTimeout(() => {
       notification?.remove();
     }, 1000)
-  }, 2000);
+  }, time);
 }
+//#endregion
 
-// Creando el Swiper:
+
+//#region SWIPERS
+// Creando el Swiper Project Gallery
 var swiper = new Swiper(".slide-content", {
-    slidesPerView: 2,
-    spaceBetween: 30,
-    centeredSlides: true,
-    grabCursor: true,
-    initialSlide: 3,
-    //loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      //dynamicBullets: true,
-      clickable: true
-    },
-    
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+  slidesPerView: 2,
+  spaceBetween: 30,
+  centeredSlides: true,
+  grabCursor: true,
+  initialSlide: 3,
+  //loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    //dynamicBullets: true,
+    clickable: true
+  },
+  
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 
-    effect: "coverflow",
-    coverflowEffect: {
-      rotate: 130,
-      stretch: 0,
-      depth: 200,
-      modifier: 0.25,
-      slideShadows: false,
-    },
-    keyboard: {
-      enabled: true,
-    },
-  });
+  effect: "coverflow",
+  coverflowEffect: {
+    rotate: 130,
+    stretch: 0,
+    depth: 100,
+    modifier: 0.25,
+    slideShadows: true,
+  },
+  keyboard: {
+    enabled: true,
+  },
+});
+
+// Creando el Swiper Image Gallery
+var imageGallerySwiper = new Swiper(".modal-swiper", {
+  zoom: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: ".image-gallery-swiper-button-next",
+    prevEl: ".image-gallery-swiper-button-prev",
+  },
+  pagination: {
+    el: '.image-gallery-swiper-pagination',
+    type: 'fraction',
+  },  
+});
+
+//#endregion
+
