@@ -49,9 +49,14 @@ function updateModal({title, subtitle, description, extra, images = [], buttons 
   modalDescription.textContent = description;
   modalExtra.textContent = extra;
   modalImagesContainer.innerHTML = "";
+  visualizerModalImagesContainer.innerHTML = "";
   images.forEach(image => {
+    // Agregamos las imagenes al Swiper Gallery
     const element = createImageElement(image);
     modalImagesContainer.appendChild(element);
+    // Agregamos las images al Swiper espejo Visualizer
+    const elementCopy = createImageElementVisualizer(image);
+    visualizerModalImagesContainer.appendChild(elementCopy);
   })
   modalButtonsContainer.innerHTML = "";
   buttons.forEach(button => {
@@ -65,10 +70,22 @@ function createImageElement({ id, src }) {
   const element = document.createElement("div");
   element.className = "swiper-slide";
   element.innerHTML = `
-    <div class="swiper-zoom-container modal-image-container">
-      <img src=${path + src} class="modal-image open-visualizer-modal" id="${id}">
+  <img src="${path + src}" class="modal-image open-visualizer-modal" id="${id}">
+  `;
+  // Retornar elemento
+  return element;
+}
+function createImageElementVisualizer({ id, src }) {
+  // Crear elemento
+  const path = "./assets/img/projects/";
+  const element = document.createElement("div");
+  element.className = "swiper-slide";
+  element.innerHTML = `
+    <div class="swiper-zoom-container visualizer-image-container">
+      <img src="${path + src}" class="visualizer-modal-image" />
     </div>
   `;
+
   // Retornar elemento
   return element;
 }
@@ -113,9 +130,6 @@ function createButtonElement({ type, href }) {
 function getProjectData(id) {
   return projects.find(project => project.id === id)
 }
-function updateVisualizerModal(src) {
-  visualizerModalImage.setAttribute("src", src);
-}
 
 // PROJECT MODAL
 const modal = document.querySelector("#modal");
@@ -138,47 +152,54 @@ openElements.forEach((element) => {
     // Actualizar info del modal
     updateModal(data);
 
+    // Deshabiltamos el Card Swiper
+    swiper.disable();
+    // Reiniciamos el Gallery Swiper
+    imageGallerySwiper.slideTo(0);
     // Mostrar modal
-    swiper.disable()
     showModal(modal);
   })
 })
 // Agregando el evento cerrar modal
 closeElements.forEach((element) => {
-  element.addEventListener("click", () => {
+  element.addEventListener("click", (e) => {
+    // Detectar target
+    const target = e.target;
+    if (target.id !== modal.id) return;
+
     // Cerrar modal
-    swiper.enable()
+    swiper.enable();
     closeModal(modal);
   })
 })
 
 // IMAGE VISUALIZER MODAL
 const visualizerModal = document.querySelector("#visualizer-modal");
-const visualizerModalImage = document.querySelector("#visualizer-modal-image");
+const visualizerModalImagesContainer = document.querySelector("#modal-images-visulizer");
 
-const openVisualizerModals = document.querySelectorAll(".open-visualizer-modal");
-const closeVisualizerModals = document.querySelectorAll(".close-visualizer-modal");
+const openVisualizerElements = document.querySelectorAll(".open-visualizer-modal");
+const closeVisualizerElements = document.querySelectorAll(".close-visualizer-modal");
 
-// Agregando el evento mostrar modal
-openVisualizerModals.forEach((element) => {
-  element.addEventListener("click", (e) => {
+// Agregando el evento mostrar modal con Doble click
+openVisualizerElements.forEach((element) => {
+  element.addEventListener("dblclick", (e) => {
     // Detectar target
     const target = e.target;
     if (target.tagName !== "IMG") {
       return;
     }
-    const src = target.src;
-
-    // Actualizar info del modal
-    updateVisualizerModal(src);
 
     // Mostrar modal
     showModal(visualizerModal);
   })
 })
 // Agregando el evento cerrar modal
-closeVisualizerModals.forEach((element) => {
-  element.addEventListener("click", () => {
+closeVisualizerElements.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    // Detectar target
+    const target = e.target;
+    if (target.id !== visualizerModal.id) return;
+
     // Cerrar modal
     closeModal(visualizerModal);
   })
@@ -267,9 +288,15 @@ var swiper = new Swiper(".slide-content", {
   },
 });
 
+// Creando el Swiper Visualizer que es espejo del Image Gallery
+var visualizerSwiper = new Swiper(".visualizer-swiper", {
+  slidesPerView: 1,
+  zoom: true,
+});
+
+
 // Creando el Swiper Image Gallery
 var imageGallerySwiper = new Swiper(".modal-swiper", {
-  zoom: true,
   grabCursor: true,
   navigation: {
     nextEl: ".image-gallery-swiper-button-next",
@@ -282,7 +309,21 @@ var imageGallerySwiper = new Swiper(".modal-swiper", {
   keyboard: {
     enabled: true,
   },
+  thumbs: {
+    swiper: visualizerSwiper,
+  },
 });
+
+// Relacionar los dos swiper para que sean espejo uno de otro:
+// agregar uno de los swiper como thumbs es el primer paso para relacionarlos.
+
+visualizerSwiper.on("slideChange", (e) => {
+  // Modificar el otro swiper
+  if (imageGallerySwiper.activeIndex !== e.activeIndex) {
+    imageGallerySwiper.slideTo(e.activeIndex)
+  }
+});
+
 
 //#endregion
 

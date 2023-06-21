@@ -190,7 +190,7 @@
     </footer>
 
     <!-- Project Modal -->
-    <section class="modal" id="modal">
+    <section class="modal close-modal" id="modal">
         <div class="modal-content">
             <h3 id="modal-title">Project title</h3>
             <p class="modal-text" id="modal-subtitle">Project subtitle</p>
@@ -212,16 +212,24 @@
                 <!-- Buttons ... -->
             </div>
 
+            <!--
             <div class="icon-button highligh-button-hover modal-close-button close-modal">
                 <i class="fi fi-rr-cross"></i>
             </div>
+            -->
         </div>
     </section>
 
     <!-- Image Visualizer Modal -->
     <section class="modal visualizer-modal close-visualizer-modal" id="visualizer-modal">
         <div class="modal-content visualizer-modal-content">
-            <img src="" id="visualizer-modal-image">
+            <div class="visualizer-swiper swiper">
+                <div class="swiper-wrapper" id="modal-images-visulizer">
+                    <!-- Images ... -->
+                    
+                </div>
+            </div>
+            <!--<img src="./assets/img/profile.jpg" id="visualizer-modal-image" class="visualizer-modal-image">-->
         </div>
     </section>
 

@@ -546,9 +546,14 @@ section#contact {
 .modal-swiper {
     width: 100%;
     margin: 25px 0;
-    min-height: 200px;
+    min-height: 250px;
+}
+#modal-description {
+    max-width: 900px;
+    text-align: justify;
 }
 #modal-extra {
+    max-width: 900px;
     margin-top: 15px;
 }
 .modal-close-button {
@@ -570,9 +575,10 @@ section#contact {
 }
 .swiper-wrapper {
 }
-.modal-image-container {
-}
 .modal-image {
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
 }
 .image-gallery-swiper-button-next {
     position: absolute;
@@ -602,11 +608,14 @@ section#contact {
     border-radius: 8px;
     box-shadow: 0px 0px 64px 16px var(--black-translucent);
 }
-
-#visualizer-modal-image {
-    object-fit: scale-down;
-    height: 100%;
+.visualizer-swiper {
     width: 100%;
+}
+.visualizer-image-container {
+    
+}
+.visualizer-modal-image {
+    
 }
 
 /* Notificaciones Toast */
@@ -805,10 +814,10 @@ section#contact {
     }
     .modal-content {
         width: 100%;
-        padding: 50px 25px;
+        padding: 50px 30px;
     }
     .modal-text {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     /* Visualizer modal */
