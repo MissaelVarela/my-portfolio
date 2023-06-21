@@ -49,10 +49,22 @@ export default [
         description: "Check kit is a cross-platform application for the maintenance control of medical equipment developed with React Native. The main functionality of the App is that the user can make a maintenance Checklist in an easy and fast way. The Checklist records are stored so that they can be consulted later. It is also possible to reserve medical equipment in a shared agenda.",
         extra: "React Native / JavaScript / Android / Web / Mobile / Expo / MySQL / Figma",
         images: [
-            "check-kit/1.png",
-            "check-kit/2.png",
-            "check-kit/3.png",
-            "check-kit/4.png",
+            {
+                id: "check-kit-img-1",
+                src: "check-kit/1.png",
+            },
+            {
+                id: "check-kit-img-2",
+                src: "check-kit/2.png",
+            },
+            {
+                id: "check-kit-img-3",
+                src: "check-kit/3.png",
+            },
+            {
+                id: "check-kit-img-4",
+                src: "check-kit/4.png",
+            },
         ],
         cardImage: "check-kit-card.png",
         buttons: [

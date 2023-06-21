@@ -19,7 +19,8 @@
             <!-- Implementar navegación
             <button class="circular-icon-button">
                 <i class="fi fi-rr-angle-right icon"></i>
-            </button> -->
+            </button> 
+            -->
         </div>
     </header>
 
@@ -192,8 +193,8 @@
     <section class="modal" id="modal">
         <div class="modal-content">
             <h3 id="modal-title">Project title</h3>
-            <p id="modal-subtitle">Project subtitle</p>
-            <div class="modal-swiper swiper" style="width: 100%; height: 100%;">
+            <p class="modal-text" id="modal-subtitle">Project subtitle</p>
+            <div class="modal-swiper swiper open-visualizer-modal">
                 <div class="swiper-wrapper" id="modal-images-container">
                     <!-- Images ... -->
                 </div>
@@ -205,15 +206,22 @@
                 </div>
                 <div class="image-gallery-swiper-pagination"></div>
             </div>
-            <p id="modal-description">Description...</p>
-            <p id="modal-extra">Skill / etc</p>
+            <p class="modal-text" id="modal-description">Description</p>
+            <p class="modal-text" id="modal-extra">Extra text</p>
             <div class="modal-buttons-container" id="modal-buttons-container">
                 <!-- Buttons ... -->
             </div>
 
-            <div class="icon-button modal-close-button close-modal">
+            <div class="icon-button highligh-button-hover modal-close-button close-modal">
                 <i class="fi fi-rr-cross"></i>
             </div>
+        </div>
+    </section>
+
+    <!-- Image Visualizer Modal -->
+    <section class="modal visualizer-modal close-visualizer-modal" id="visualizer-modal">
+        <div class="modal-content visualizer-modal-content">
+            <img src="" id="visualizer-modal-image">
         </div>
     </section>
 

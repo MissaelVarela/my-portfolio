@@ -20,7 +20,6 @@ projects.forEach((project) => {
   else {
     cardContent.classList.add("card-content-no-scroll");
   }
-  
 
   card.appendChild(cardContent);
   cardWrapper.appendChild(card);
@@ -35,22 +34,13 @@ emailButton.addEventListener("click", () => {
   showNotification({ type: notificationTypes.Success, text: "Copied to clipboard"});
 });
 
-//#region PROJECT MODAL
-const modal = document.querySelector("#modal");
-const modalTitle = document.querySelector("#modal-title");
-const modalSubtitle = document.querySelector("#modal-subtitle");
-const modalDescription = document.querySelector("#modal-description");
-const modalExtra = document.querySelector("#modal-extra");
-const modalImagesContainer = document.querySelector("#modal-images-container");
-const modalButtonsContainer = document.querySelector("#modal-buttons-container");
+//#region MODAL
 
-const openElements = document.querySelectorAll(".open-modal");
-const closeElements = document.querySelectorAll(".close-modal");
-
-function showModal() {
+// funciones
+function showModal(modal) {
   modal.classList.add("modal-shown");
 }
-function closeModal() {
+function closeModal(modal) {
   modal.classList.remove("modal-shown");
 }
 function updateModal({title, subtitle, description, extra, images = [], buttons = []}) {
@@ -69,14 +59,14 @@ function updateModal({title, subtitle, description, extra, images = [], buttons 
     modalButtonsContainer.appendChild(element);
   })
 }
-function createImageElement(imageName) {
+function createImageElement({ id, src }) {
   // Crear elemento
   const path = "./assets/img/projects/";
   const element = document.createElement("div");
   element.className = "swiper-slide";
   element.innerHTML = `
     <div class="swiper-zoom-container modal-image-container">
-      <img src=${path + imageName} class="modal-image">
+      <img src=${path + src} class="modal-image open-visualizer-modal" id="${id}">
     </div>
   `;
   // Retornar elemento
@@ -123,6 +113,21 @@ function createButtonElement({ type, href }) {
 function getProjectData(id) {
   return projects.find(project => project.id === id)
 }
+function updateVisualizerModal(src) {
+  visualizerModalImage.setAttribute("src", src);
+}
+
+// PROJECT MODAL
+const modal = document.querySelector("#modal");
+const modalTitle = document.querySelector("#modal-title");
+const modalSubtitle = document.querySelector("#modal-subtitle");
+const modalDescription = document.querySelector("#modal-description");
+const modalExtra = document.querySelector("#modal-extra");
+const modalImagesContainer = document.querySelector("#modal-images-container");
+const modalButtonsContainer = document.querySelector("#modal-buttons-container");
+
+const openElements = document.querySelectorAll(".open-modal");
+const closeElements = document.querySelectorAll(".close-modal");
 
 // Agregando el evento mostrar modal
 openElements.forEach((element) => {
@@ -134,16 +139,53 @@ openElements.forEach((element) => {
     updateModal(data);
 
     // Mostrar modal
-    showModal();
+    swiper.disable()
+    showModal(modal);
   })
 })
 // Agregando el evento cerrar modal
 closeElements.forEach((element) => {
   element.addEventListener("click", () => {
-    closeModal();
+    // Cerrar modal
+    swiper.enable()
+    closeModal(modal);
   })
 })
+
+// IMAGE VISUALIZER MODAL
+const visualizerModal = document.querySelector("#visualizer-modal");
+const visualizerModalImage = document.querySelector("#visualizer-modal-image");
+
+const openVisualizerModals = document.querySelectorAll(".open-visualizer-modal");
+const closeVisualizerModals = document.querySelectorAll(".close-visualizer-modal");
+
+// Agregando el evento mostrar modal
+openVisualizerModals.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    // Detectar target
+    const target = e.target;
+    if (target.tagName !== "IMG") {
+      return;
+    }
+    const src = target.src;
+
+    // Actualizar info del modal
+    updateVisualizerModal(src);
+
+    // Mostrar modal
+    showModal(visualizerModal);
+  })
+})
+// Agregando el evento cerrar modal
+closeVisualizerModals.forEach((element) => {
+  element.addEventListener("click", () => {
+    // Cerrar modal
+    closeModal(visualizerModal);
+  })
+})
+
 //#endregion
+
 
 //#region TOAST NOTIFICATION
 let currentNotification;
@@ -237,6 +279,9 @@ var imageGallerySwiper = new Swiper(".modal-swiper", {
     el: '.image-gallery-swiper-pagination',
     type: 'fraction',
   },  
+  keyboard: {
+    enabled: true,
+  },
 });
 
 //#endregion
