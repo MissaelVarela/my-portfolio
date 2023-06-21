@@ -11,7 +11,16 @@ projects.forEach((project) => {
   card.setAttribute("id", project.id);
 
   const cardContent = document.createElement("div");
-  cardContent.classList.add("card-content");
+  const body = document.querySelector("body");
+  const horizontalScrollWidth = window.innerWidth - body.clientWidth;
+  // Verificar si hay scroll en la ventana para tomarlo en cuenta
+  if (horizontalScrollWidth > 0) {
+    cardContent.classList.add("card-content");
+  }
+  else {
+    cardContent.classList.add("card-content-no-scroll");
+  }
+  
 
   card.appendChild(cardContent);
   cardWrapper.appendChild(card);
@@ -231,4 +240,6 @@ var imageGallerySwiper = new Swiper(".modal-swiper", {
 });
 
 //#endregion
+
+
 
