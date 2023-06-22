@@ -30,9 +30,49 @@ export default [
         id: "patolli-card",
         title: "Patolli",
         subtitle: "A prehispanic board game",
-        description: "...",
-        extra: "skill / ...",
+        description: "Patolli is an ancient Mesoamerican board game played by the Aztecs and other indigenous cultures. It involves strategy, luck and gambling elements. In this project, the design of the game logic and the connection between players was put into practice.",
+        extra: "C# / Software architecture / UML / Design patterns / Distributed system",
         images: [
+            {
+                id: "patolli-img-1",
+                src: "patolli/1.jpg",
+            },
+            {
+                id: "patolli-img-2",
+                src: "patolli/2.png",
+            },
+            {
+                id: "patolli-img-3",
+                src: "patolli/3.jpg",
+            },
+            {
+                id: "patolli-img-4",
+                src: "patolli/4.png",
+            },
+            {
+                id: "patolli-img-5",
+                src: "patolli/5.png",
+            },
+            {
+                id: "patolli-img-6",
+                src: "patolli/6.jpg",
+            },
+            {
+                id: "patolli-img-7",
+                src: "patolli/7.png",
+            },
+            {
+                id: "patolli-img-8",
+                src: "patolli/8.png",
+            },
+            {
+                id: "patolli-img-9",
+                src: "patolli/9.png",
+            },
+            {
+                id: "patolli-img-10",
+                src: "patolli/10.png",
+            },
         ],
         cardImage: "patolli-card.png",
         buttons: [
@@ -51,7 +91,7 @@ export default [
         images: [
             {
                 id: "check-kit-img-1",
-                src: "check-kit/1.png",
+                src: "check-kit/1.gif",
             },
             {
                 id: "check-kit-img-2",
@@ -64,6 +104,18 @@ export default [
             {
                 id: "check-kit-img-4",
                 src: "check-kit/4.png",
+            },
+            {
+                id: "check-kit-img-5",
+                src: "check-kit/5.png",
+            },
+            {
+                id: "check-kit-img-6",
+                src: "check-kit/6.png",
+            },
+            {
+                id: "check-kit-img-7",
+                src: "check-kit/7.png",
             },
         ],
         cardImage: "check-kit-card.png",
@@ -82,9 +134,21 @@ export default [
         id: "cefis-card",
         title: "CEFIS System Maintenance",
         subtitle: "Design and implementation of a software maintenance method",
-        description: "...",
-        extra: "skill / ...",
+        description: "Request for maintenance of the system used in CEFIS at San José Hospital. The study and practice was focused on designing and implementing a software maintenance method allowed for the evolution of the system's features.",
+        extra: "Project Management / React.js / Software Maintenance / Git / GitHub / Thesis / Method Design",
         images: [
+            {
+                id: "cefis-img-1",
+                src: "cefis/1.png",
+            },
+            {
+                id: "cefis-img-2",
+                src: "cefis/2.png",
+            },
+            {
+                id: "cefis-img-3",
+                src: "cefis/3.png",
+            },
         ],
         cardImage: "cefis-card.png",
         buttons: [

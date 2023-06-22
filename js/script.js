@@ -3,14 +3,16 @@ import projects from "./projectData.js"
 // Agregando las Card projects
 const cardWrapper = document.getElementById("card-wrapper");
 
-projects.forEach((project) => {
+projects.forEach((project, index) => {
   const card = document.createElement("div");
   card.classList.add("card");
   card.classList.add("swiper-slide");
   card.classList.add("open-modal");
   card.setAttribute("id", project.id);
+  card.setAttribute("data-card-index", index);
 
   const cardContent = document.createElement("div");
+  cardContent.setAttribute("data-card-index", index);
   const body = document.querySelector("body");
   const horizontalScrollWidth = window.innerWidth - body.clientWidth;
   // Verificar si hay scroll en la ventana para tomarlo en cuenta
@@ -48,16 +50,23 @@ function updateModal({title, subtitle, description, extra, images = [], buttons 
   modalSubtitle.textContent = subtitle;
   modalDescription.textContent = description;
   modalExtra.textContent = extra;
-  modalImagesContainer.innerHTML = "";
-  visualizerModalImagesContainer.innerHTML = "";
+  // Limpiar swipers
+  cleanSwiper(imageGallerySwiper);
+  cleanSwiper(visualizerSwiper);
+  //modalImagesContainer.innerHTML = "";
+  //visualizerModalImagesContainer.innerHTML = "";
   images.forEach(image => {
     // Agregamos las imagenes al Swiper Gallery
     const element = createImageElement(image);
-    modalImagesContainer.appendChild(element);
+    //modalImagesContainer.appendChild(element);
+    imageGallerySwiper.appendSlide(element);
+
     // Agregamos las images al Swiper espejo Visualizer
     const elementCopy = createImageElementVisualizer(image);
-    visualizerModalImagesContainer.appendChild(elementCopy);
+    //visualizerModalImagesContainer.appendChild(elementCopy);
+    visualizerSwiper.appendSlide(elementCopy);
   })
+
   modalButtonsContainer.innerHTML = "";
   buttons.forEach(button => {
     const element = createButtonElement(button);
@@ -145,8 +154,15 @@ const closeElements = document.querySelectorAll(".close-modal");
 
 // Agregando el evento mostrar modal
 openElements.forEach((element) => {
-  element.addEventListener("click", () => {
-    // Detectar target
+  element.addEventListener("click", (e) => {
+    // Detectar target. Si la target card es la activa mostrar modal, si no, poner la target card como activa.
+    const target = e.target;
+    if(swiper.activeIndex != target.dataset?.cardIndex) {
+      swiper.slideTo(target.dataset.cardIndex);
+      return;
+    }
+
+    // Obtener la data
     const data = getProjectData(element.id);
 
     // Actualizar info del modal
@@ -154,7 +170,8 @@ openElements.forEach((element) => {
 
     // Deshabiltamos el Card Swiper
     swiper.disable();
-    // Reiniciamos el Gallery Swiper
+    // Reiniciamos el Gallery Swiper y lo movemos para que se ejecute el evento SlideChange y se actualice el estado enable de los botones
+    imageGallerySwiper.slideTo(1);
     imageGallerySwiper.slideTo(0);
     // Mostrar modal
     showModal(modal);
@@ -179,15 +196,12 @@ const visualizerModalImagesContainer = document.querySelector("#modal-images-vis
 
 const openVisualizerElements = document.querySelectorAll(".open-visualizer-modal");
 const closeVisualizerElements = document.querySelectorAll(".close-visualizer-modal");
-
 // Agregando el evento mostrar modal con Doble click
 openVisualizerElements.forEach((element) => {
-  element.addEventListener("dblclick", (e) => {
+  element.addEventListener("click", (e) => {
     // Detectar target
     const target = e.target;
-    if (target.tagName !== "IMG") {
-      return;
-    }
+    if (target.tagName !== "IMG") return;
 
     // Mostrar modal
     showModal(visualizerModal);
@@ -198,7 +212,7 @@ closeVisualizerElements.forEach((element) => {
   element.addEventListener("click", (e) => {
     // Detectar target
     const target = e.target;
-    if (target.id !== visualizerModal.id) return;
+    if (target.tagName === "IMG") return;
 
     // Cerrar modal
     closeModal(visualizerModal);
@@ -291,6 +305,7 @@ var swiper = new Swiper(".slide-content", {
 // Creando el Swiper Visualizer que es espejo del Image Gallery
 var visualizerSwiper = new Swiper(".visualizer-swiper", {
   slidesPerView: 1,
+  spaceBetween: 30,
   zoom: true,
 });
 
@@ -324,6 +339,24 @@ visualizerSwiper.on("slideChange", (e) => {
   }
 });
 
+// Bloqueando botones de navegacion manualmente
+const gallerySwiperNextButton = document.querySelector(".image-gallery-swiper-button-next");
+const gallerySwiperPrevButton = document.querySelector(".image-gallery-swiper-button-prev");
+
+imageGallerySwiper.on("slideChange", enableNavButton);
+
+// Funciones de Swiper
+function cleanSwiper(swiper) {
+  swiper.removeAllSlides();
+}
+function enableNavButton() {
+  console.log(imageGallerySwiper.isBeginning, imageGallerySwiper.isEnd);
+  if(imageGallerySwiper.isBeginning) gallerySwiperPrevButton.classList.add("button-disable");
+  else gallerySwiperPrevButton.classList.remove("button-disable");
+
+  if(imageGallerySwiper.isEnd) gallerySwiperNextButton.classList.add("button-disable");
+  else gallerySwiperNextButton.classList.remove("button-disable");
+}
 
 //#endregion
 
