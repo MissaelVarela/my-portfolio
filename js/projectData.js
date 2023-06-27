@@ -3,20 +3,49 @@ export default [
         id: "truth-table-card",
         title: "Truth table",
         subtitle: "Calculator",
-        description: "...",
-        extra: "skill / ...",
+        description: "Program that generates truth tables working with Boolean algebra.",
+        extra: "Boolean algebra / C#",
         images: [
+            {
+                id: "truth-table-img-1",
+                src: "truth-table/1.png",
+            },
+            {
+                id: "truth-table-img-2",
+                src: "truth-table/2.png",
+            },
+            {
+                id: "truth-table-img-3",
+                src: "truth-table/3.png",
+            },
         ],
         cardImage: "truth-table-card.png",
-        buttons: [],
+        buttons: [
+            {
+                type: "Code",
+                href: "https://github.com/MissaelVarela/truth-table-calculator",
+            }
+        ],
     },
     {
         id: "mineria-card",
         title: "Minería Sistema distribuido",
         subtitle: "An academic project for the traffic control of a mining",
-        description: "...",
-        extra: "skill / ...",
+        description: "In this project, a distributed system was developed that communicates and controls the states of the traffic lights of a collection of mining routes, in order to have better traffic management.",
+        extra: "Distributed system / C# / System design / FireBase",
         images: [
+            {
+                id: "mineria-img-1",
+                src: "mineria/1.jpg",
+            },
+            {
+                id: "mineria-img-2",
+                src: "mineria/2.jpg",
+            },
+            {
+                id: "mineria-img-3",
+                src: "mineria/3.jpg",
+            },
         ],
         cardImage: "mineria-card.png",
         buttons: [
@@ -162,9 +191,21 @@ export default [
         id: "orders-card",
         title: "Restaurant order manager",
         subtitle: "System for the control of orders of a restaurant",
-        description: "...",
-        extra: "skill / ...",
+        description: "This project was focused on developing an application to control the order process of a restaurant. A module was developed for the restaurant cooks, which allows managing the completion and order of arrival of customer orders. Another module, designed for waiters, allows you to create orders.",
+        extra: "Application Communication / RabbitMQ / C# / Web",
         images: [
+            {
+                id: "orders-img-1",
+                src: "orders/1.png",
+            },
+            {
+                id: "orders-img-2",
+                src: "orders/2.png",
+            },
+            {
+                id: "orders-img-3",
+                src: "orders/3.png",
+            },
         ],
         cardImage: "orders-card.png",
         buttons: [],
@@ -173,9 +214,25 @@ export default [
         id: "sorting-card",
         title: "Sorting algorithm visualizer",
         subtitle: "A graphical demonstration of how the sorting algorithms work",
-        description: "...",
-        extra: "skill / ...",
+        description: "A program to visualize the behavior of sorting algorithms in an interactive way.",
+        extra: "Sorting algorithms / C#",
         images: [
+            {
+                id: "sorting-img-1",
+                src: "sorting/1.png",
+            },
+            {
+                id: "sorting-img-2",
+                src: "sorting/2.png",
+            },
+            {
+                id: "sorting-img-3",
+                src: "sorting/3.png",
+            },
+            {
+                id: "sorting-img-4",
+                src: "sorting/4.png",
+            },
         ],
         cardImage: "sorting-card.png",
         buttons: [

@@ -196,7 +196,7 @@ const visualizerModalImagesContainer = document.querySelector("#modal-images-vis
 
 const openVisualizerElements = document.querySelectorAll(".open-visualizer-modal");
 const closeVisualizerElements = document.querySelectorAll(".close-visualizer-modal");
-// Agregando el evento mostrar modal con Doble click
+// Agregando el evento mostrar modal con click
 openVisualizerElements.forEach((element) => {
   element.addEventListener("click", (e) => {
     // Detectar target
@@ -277,6 +277,7 @@ var swiper = new Swiper(".slide-content", {
   centeredSlides: true,
   grabCursor: true,
   initialSlide: 3,
+  speed: 750,
   //loop: true,
   pagination: {
     el: ".swiper-pagination",
