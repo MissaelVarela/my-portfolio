@@ -15,9 +15,8 @@
     --primary: #3A86FF;
 
     --light-translucent: rgba(255, 255, 255, 0.5);
-    --dark-translucent: rgba(240, 240, 240, 0.5);
     --gray-translucent: rgba(180, 180, 180, 0.25);
-    --black-translucent: rgba(0, 0, 0, 0.25);;
+    --dark-translucent: rgba(0, 0, 0, 0.25);;
 }
 
 /* Normalize */
@@ -121,26 +120,6 @@ i {
     border: 1px outset rgba(255, 255, 255, 0.18);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(218, 218, 218, 0.2)); 
 }
-/* Sections */
-.light-solid-section {
-    background-color: var(--white);
-}
-.light-blur-section {
-    background-color: var(--light-translucent);
-    backdrop-filter: blur(8px);
-    box-shadow: 0px 0px 64px 8px var(--black-translucent);
-}
-.dark-blur-section {
-    background-color: var(--dark-translucent);
-    backdrop-filter: blur(8px);
-}
-.section-title {
-}
-.section-introduction-text-container {
-    margin: 20px 0;
-    max-width: 800px;
-    text-align: center;
-}
 /* Text */
 .subtitle {
     font-size: 32px;
@@ -153,10 +132,8 @@ i {
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
-
 /* Buttons */
-.no-style-button, .primary-button, .default-button, .circular-icon-button, .icon-button, .contact-element-button, .icon-text-button {
+.no-style-button, .primary-button, .default-button, .circular-icon-button, .icon-button, .icon-text-button {
     cursor: pointer;
     border: none;
 }
@@ -168,23 +145,13 @@ i {
     margin: 20px 0;
     font-size: 16px;
     font-weight: 600;
-    box-shadow: 0px 4px 8px 0 var(--black-translucent);
-    transition: all 0.15s ease;
-}
-.primary-button:hover {
-    scale: 1.1;
-    transition: all 0.15s ease;
+    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
 }
 .default-button {
     background-color: var(--dark);
     color: var(--gray);
     padding: 8px 16px;
     border-radius: 10px;
-    transition: all 0.15s ease;
-}
-.default-button:hover {
-    scale: 1.1;
-    transition: all 0.15s ease;
 }
 .icon-text-button {
     display: flex;
@@ -194,12 +161,7 @@ i {
     color: var(--dark);
     padding: 10px 16px;
     border-radius: 16px;
-    box-shadow: 0px 4px 8px 0 var(--black-translucent);
-    transition: all 0.15s ease;
-}
-.icon-text-button:hover {
-    scale: 1.1;
-    transition: all 0.15s ease;
+    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
 }
 .circular-icon-button {
     display: flex;
@@ -221,24 +183,6 @@ i {
     padding: 15px;
     margin: 0px 5px;
     border-radius: 20px;
-    background-color: transparent;
-    transition: all 0.25s ease;
-}
-.icon-button:hover {
-    background-color: var(--gray-translucent);
-}
-.highligh-button-hover {
-    background-color: var(--gray-translucent);
-}
-.highligh-button-hover:hover {
-    background-color: var(--dark-translucent);
-}
-.contact-element-button {
-
-}
-.contact-element-button:hover {
-    scale: 1.05;
-    transition: all 0.15s ease;
 }
 .swiper-nav-button {
     display: flex;
@@ -248,15 +192,35 @@ i {
     border-radius: 25px;
     background-color: var(--gray-translucent);
 }
-.swiper-nav-button:hover {
-    background-color: var(--light-translucent);
-}
 .button-disable {
     pointer-events: none;
     filter: opacity(0.4);
 }
-
-
+/* Button hovers */
+.highligh-hover:hover {
+    filter: brightness(1.5);
+}
+.brightness-hover:hover {
+    filter: brightness(0.5);
+    transition: filter 0.15s ease;
+}
+.gray-background-hover:hover {
+    background-color: var(--gray-translucent);
+}
+.opacity-hover {
+    opacity: 1;
+}
+.opacity-hover:hover {
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+}
+.scale-hover {
+    transition: scale 0.15s ease;
+}
+.scale-hover:hover {
+    scale: 1.05;
+    transition: scale 0.15s ease;
+}
 /* Icons */
 .icon-svg {
     height: 40px;
@@ -264,9 +228,27 @@ i {
 .small-icon-svg {
     height: 28px;
 }
-
+/* Sections */
+.light-solid-section {
+    background-color: var(--white);
+}
+.light-blur-section {
+    background-color: var(--light-translucent);
+    backdrop-filter: blur(8px);
+    box-shadow: 0px 0px 64px 8px var(--dark-translucent);
+}
+.dark-blur-section {
+    background-color: var(--dark-translucent);
+    backdrop-filter: blur(8px);
+}
+.section-title {
+}
+.section-introduction-text-container {
+    margin: 20px 0;
+    max-width: 800px;
+    text-align: center;
+}
 /* Hero section */
-
 section#hero {
     flex-direction: row;
     justify-content: space-evenly;
@@ -274,7 +256,6 @@ section#hero {
     min-height: calc(100vh - 25px);
     padding: 60px 25px;
 }
-
 #hero-text-container {
     display: flex;
     flex-direction: column;
@@ -284,13 +265,23 @@ section#hero {
 }
 #hero-image-container {
     /* valor defecto 500px x 500px*/
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 400px;
     height: 400px;
     border-radius: 32px;
 }
 .hero-image {
     width: 400px;
+}
+#cir-main{
+    background-color: var(--primary);
+    border-radius: 100%;
+    width: 30vw;
+    height: 30vw;
+    max-width: 200px;
+    max-height: 200px;
 }
 .hero-title {
     line-height: 100px;
@@ -328,10 +319,10 @@ section#about {
     height: 250px;
     margin: 25px 0;
     border-radius: 150px;
-    box-shadow: 0px 4px 8px 0 var(--black-translucent);
+    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
 }
 .about-subtitle {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .about-text-container {
     margin-left: 60px;
@@ -339,7 +330,7 @@ section#about {
     text-align: center;
 }
 .about-text {
-    
+    text-align: justify;
     
     
 }
@@ -350,7 +341,7 @@ section#about {
     flex-wrap: wrap;
     margin-top: 5px;
 }
-.tool-card {
+.tool {
     position: relative;
     margin: 5px 5px;
 }
@@ -376,7 +367,10 @@ section#projects {
     align-items: center;
     padding: 60px 0;
 }
-
+section#projects .section-introduction-text-container  {
+    margin-left: 30px;
+    margin-right: 30px;
+}
 .slide-container {
     display: flex;
     justify-content: center;
@@ -402,7 +396,7 @@ section#projects {
     padding: 25px;
     background-color: var(--gray);
     border-radius: 32px;
-    box-shadow: 0px 8px 15px 3px var(--black-translucent);
+    box-shadow: 0px 8px 15px 3px var(--dark-translucent);
     overflow: hidden;
 }
 .card-title {
@@ -490,7 +484,7 @@ section#contact {
     border-radius: 16px;
     background-color: var(--white);
     margin: 20px;
-    box-shadow: 0px 4px 8px 0 var(--black-translucent);
+    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
 }
 
 .contact-element-image-container {
@@ -543,7 +537,7 @@ section#contact {
     margin: 0 auto;
     border-radius: 32px;
     background-color: var(--white);
-    box-shadow: 0px 0px 64px 8px var(--black-translucent);
+    box-shadow: 0px 0px 64px 8px var(--dark-translucent);
     overflow-y: scroll;
 }
 .modal-content::-webkit-scrollbar {
@@ -583,8 +577,6 @@ section#contact {
 .modal-text {
     font-size: 20px;
 }
-.swiper-wrapper {
-}
 .modal-image {
     height: 100%;
     max-width: 100%;
@@ -616,6 +608,7 @@ section#contact {
     padding: 50px;
 }
 .visualizer-modal-content {
+    /* Quitando los valores del .modal-content */
     border-radius: 0;
     padding: 0px;
     background-color: unset;
@@ -624,8 +617,9 @@ section#contact {
 
 .visualizer-swiper {
     width: 100%;
+    height: 100%;
 }
-.visualizer-image-container {
+#modal-images-visulizer {
 }
 .visualizer-modal-image {
     border-radius: 16px;
@@ -650,7 +644,7 @@ section#contact {
     margin: 25px 0 0 0;
     border-radius: 16px;
     background-color: var(--white);
-    box-shadow: 0px 4px 8px 0 var(--black-translucent);
+    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
 }
 .toast-notification-text {
     margin-left: 15px;
@@ -710,7 +704,10 @@ section#contact {
     }
     .about-text-container {
         margin: 0;
-        
+    }
+    .about-text {
+        margin: 25px 0 18px;    
+        text-align: center;
     }
 }
 
@@ -740,6 +737,26 @@ section#contact {
     }
     .blur-container {
         border-radius: 32px;
+    }
+    /* Button hovers */
+    .highligh-hover:hover {
+        filter: unset;
+    }
+    .brightness-hover:hover {
+        filter: unset;
+    }
+    .gray-background-hover:hover {
+        background-color: unset;
+    }
+    .opacity-hover:hover {
+        opacity: unset;
+    }
+    .scale-hover:hover {
+        scale: unset;
+    }
+    .scale-hover:active {
+        scale: 1.05;
+        transition: scale 0.15s ease;
     }
     /* Text */
     .subtitle {
@@ -774,10 +791,11 @@ section#contact {
     .about-text-container {
         max-width: 400px;
     }
-    .tools-container {
-        
-    }
     /*Project section*/
+    section#projects .section-introduction-text-container  {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
     .card {
         border-radius: 28px;
     }
@@ -805,7 +823,9 @@ section#contact {
         padding: 35px 25px;
     }
     /*Section: Contact*/
-    
+    section#contact {
+        padding: 30px;
+    }
     .contacts-container {
         padding: 15px 0;
         margin: 15px 0;
@@ -831,7 +851,7 @@ section#contact {
     }
     /* Modal */
     .modal { 
-        padding: 30px 25px;
+        padding: 75px 25px;
     }
     .modal-content {
         width: 100%;
@@ -893,7 +913,7 @@ section#contact {
 }
 #cir-5 {
     left: 270px;
-    bottom: 540px;
+    bottom: 480px;
     width: 30vw;
     height: 30vw;
     max-width: 40px;
@@ -908,7 +928,7 @@ section#contact {
     max-height: 650px;
 }
 #cir-7 {
-    left: calc(50vw + 25px);
+    right: 50px;
     top: 45px;
     width: 30vw;
     height: 30vw;
@@ -917,9 +937,9 @@ section#contact {
 }
 #cir-8 {
     right: 200px;
-    bottom: 600px;
+    bottom: 850px;
     width: 50vw;
     height: 50vw;
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 40px;
+    max-height: 40px;
 }

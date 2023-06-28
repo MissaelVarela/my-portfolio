@@ -125,7 +125,8 @@ function createButtonElement({ type, href }) {
 
   // Crear elemento
   const element = document.createElement("a");
-  element.className = "icon-text-button";
+  element.classList.add("icon-text-button");
+  element.classList.add("scale-hover");
   element.setAttribute("href", href);
   element.setAttribute("target", "_blank");
   element.innerHTML = `
@@ -270,7 +271,7 @@ async function showNotification({ type, text = "", time = 2000 }){
 
 
 //#region SWIPERS
-// Creando el Swiper Project Gallery
+// Creando el Swiper Project
 var swiper = new Swiper(".slide-content", {
   slidesPerView: 2,
   spaceBetween: 30,

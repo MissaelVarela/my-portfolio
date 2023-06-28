@@ -4,7 +4,7 @@ export default [
         title: "Truth table",
         subtitle: "Calculator",
         description: "Program that generates truth tables working with Boolean algebra.",
-        extra: "Boolean algebra / C#",
+        extra: "C# / Boolean algebra / Binary operations",
         images: [
             {
                 id: "truth-table-img-1",
@@ -32,7 +32,7 @@ export default [
         title: "Minería Sistema distribuido",
         subtitle: "An academic project for the traffic control of a mining",
         description: "In this project, a distributed system was developed that communicates and controls the states of the traffic lights of a collection of mining routes, in order to have better traffic management.",
-        extra: "Distributed system / C# / System design / FireBase",
+        extra: "Distributed system / C# / System design / FireBase / UML",
         images: [
             {
                 id: "mineria-img-1",
@@ -161,7 +161,7 @@ export default [
     },
     {
         id: "cefis-card",
-        title: "CEFIS System Maintenance",
+        title: "Practice in CEFIS System Maintenance",
         subtitle: "Design and implementation of a software maintenance method",
         description: "Request for maintenance of the system used in CEFIS at San José Hospital. The study and practice was focused on designing and implementing a software maintenance method allowed for the evolution of the system's features.",
         extra: "Project Management / React.js / Software Maintenance / Git / GitHub / Thesis / Method Design",
@@ -183,7 +183,7 @@ export default [
         buttons: [
             {
                 type: "Documentation",
-                href: "https://drive.google.com/file/d/1MIDWLh1sG9VIcF-f24WOItkUpwx7LIg2/view?usp=drive_link"
+                href: "https://drive.google.com/file/d/1bFDlXPBuoNnJAWQ1ss3a9mphqUc2k0-V/view?usp=sharing"
             },
         ],
     },
@@ -192,11 +192,11 @@ export default [
         title: "Restaurant order manager",
         subtitle: "System for the control of orders of a restaurant",
         description: "This project was focused on developing an application to control the order process of a restaurant. A module was developed for the restaurant cooks, which allows managing the completion and order of arrival of customer orders. Another module, designed for waiters, allows you to create orders.",
-        extra: "Application Communication / RabbitMQ / C# / Web",
+        extra: "Application Communication / RabbitMQ / C# / Web / SQLServer",
         images: [
             {
                 id: "orders-img-1",
-                src: "orders/1.png",
+                src: "orders/1.gif",
             },
             {
                 id: "orders-img-2",
@@ -205,6 +205,10 @@ export default [
             {
                 id: "orders-img-3",
                 src: "orders/3.png",
+            },
+            {
+                id: "orders-img-4",
+                src: "orders/4.png",
             },
         ],
         cardImage: "orders-card.png",
@@ -215,15 +219,15 @@ export default [
         title: "Sorting algorithm visualizer",
         subtitle: "A graphical demonstration of how the sorting algorithms work",
         description: "A program to visualize the behavior of sorting algorithms in an interactive way.",
-        extra: "Sorting algorithms / C#",
+        extra: "Sorting algorithms / C# / Data structure",
         images: [
             {
                 id: "sorting-img-1",
-                src: "sorting/1.png",
+                src: "sorting/1.gif",
             },
             {
                 id: "sorting-img-2",
-                src: "sorting/2.png",
+                src: "sorting/2.gif",
             },
             {
                 id: "sorting-img-3",
@@ -232,6 +236,14 @@ export default [
             {
                 id: "sorting-img-4",
                 src: "sorting/4.png",
+            },
+            {
+                id: "sorting-img-5",
+                src: "sorting/5.png",
+            },
+            {
+                id: "sorting-img-6",
+                src: "sorting/6.png",
             },
         ],
         cardImage: "sorting-card.png",
