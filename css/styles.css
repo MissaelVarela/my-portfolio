@@ -313,13 +313,13 @@ section#about {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 32px 0;
+    padding: 24px 0;
 }
 .about-image {
     height: 250px;
     margin: 25px 0;
     border-radius: 150px;
-    box-shadow: 0px 4px 8px 0 var(--dark-translucent);
+    
 }
 .about-subtitle {
     margin-bottom: 10px;
@@ -330,7 +330,6 @@ section#about {
     text-align: center;
 }
 .about-text {
-    text-align: justify;
     
     
 }
@@ -706,8 +705,7 @@ section#contact {
         margin: 0;
     }
     .about-text {
-        margin: 25px 0 18px;    
-        text-align: center;
+        margin: 25px 0 18px;   
     }
 }
 
@@ -779,7 +777,9 @@ section#contact {
     section#about {
         padding: 40px;
     }
-    
+    .introduction-container {
+        padding: 0 0 15px;
+    }
     .about-container {
         margin-left: 0px;
         margin-top: 20px;
@@ -790,6 +790,12 @@ section#contact {
     }
     .about-text-container {
         max-width: 400px;
+    }
+    .about-text {
+        margin: 10px 0 10px;    
+    }
+    .tool-img {
+        height: 40px;
     }
     /*Project section*/
     section#projects .section-introduction-text-container  {

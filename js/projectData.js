@@ -164,7 +164,7 @@ export default [
         title: "Practice in CEFIS System Maintenance",
         subtitle: "Design and implementation of a software maintenance method",
         description: "Request for maintenance of the system used in CEFIS at San José Hospital. The study and practice was focused on designing and implementing a software maintenance method allowed for the evolution of the system's features.",
-        extra: "Project Management / React.js / Software Maintenance / Git / GitHub / Thesis / Method Design",
+        extra: "Project Management / React / Software Maintenance / Git / GitHub / Method Design",
         images: [
             {
                 id: "cefis-img-1",
